@@ -1,37 +1,40 @@
 'use strict';
 
-const core = require('@actions/core');
-const webExt = require('web-ext');
-const qs = require('querystring');
-const path = require('path');
+const core = require('@actions/core'),
+    webExt = require('web-ext'),
+    qs = require('querystring'),
+    path = require('path'),
+
+    NONE = 0,
+    FIRST = 1,
+    source = core.getInput('extension-root') || '.',
+    selfHosted = /true/.test(core.getInput('self-hosted'));
+//TODO support explicit config path?
 
 function report(level, info, message) {
     const meta = qs.stringify(info, ',', '=', {
-        encodeURIComponent: (str) => str
+        encodeURIComponent: (string) => string
     });
     core.info(`::${level} ${meta}::${message}`);
 }
 
-function formatLocation(report) {
+function formatLocation(lintReport) {
     return [
-        report.file,
-        report.line,
-        report.column
+        lintReport.file,
+        lintReport.line,
+        lintReport.column
     ].filter((exists) => !!exists)
         .join(':');
 }
 
-function formatMessage(report) {
+function formatMessage(lintReport) {
     const verbose = /true/.test(core.getInput('verbose'));
     if(verbose) {
-        return `${report.message} - ${report.description}`;
+        return `${lintReport.message} - ${lintReport.description}`;
     }
-    return report.message;
+    return lintReport.message;
 }
 
-const source = core.getInput('extension-root') || '.';
-const selfHosted = /true/.test(core.getInput('self-hosted'));
-//TODO support explicit config path?
 webExt.cmd.lint({
     sourceDir: source,
     output: 'none',
@@ -41,14 +44,14 @@ webExt.cmd.lint({
     shouldExitProgram: false
 })
     .then((lintResult) => {
-        if(lintResult.errors.length > 0) {
+        if(lintResult.errors.length > NONE) {
             core.startGroup('Errors');
             for(const error of lintResult.errors) {
                 if(error.file) {
                     report('error', {
                         file: path.join(source, error.file),
-                        line: error.line || 1,
-                        col: error.column || 1
+                        line: error.line || FIRST,
+                        col: error.column || FIRST
                     }, formatMessage(error));
                 }
                 else {
@@ -63,8 +66,8 @@ webExt.cmd.lint({
                 if(warning.file) {
                     report('warning', {
                         file: path.join(source, warning.file),
-                        line: warning.line || 1,
-                        col: warning.column || 1
+                        line: warning.line || FIRST,
+                        col: warning.column || FIRST
                     }, formatMessage(warning));
                 }
                 else {
@@ -80,7 +83,7 @@ webExt.cmd.lint({
             }
             core.endGroup();
         }
-        if(lintResult.summary.errors > 0) {
+        if(lintResult.summary.errors > NONE) {
             core.setFailed(`${lintResult.summary.errors} error(s) were reported by web-ext`);
         }
     })

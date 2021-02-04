@@ -4,7 +4,7 @@
   "description": "Github action to lint WebExtensions",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "eslint index.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,10 @@
     "@actions/core": "^1.2.6",
     "web-ext": "^5.5.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@freaktechnik/eslint-config-node": "^8.0.2",
+    "eslint": "^7.19.0"
+  },
   "engines": {
     "node": ">=12"
   }
