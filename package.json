@@ -18,9 +18,13 @@
   },
   "homepage": "https://github.com/freaktechnik/web-ext-lint#readme",
   "dependencies": {
-    "@actions/core": "^1.2.6"
+    "@actions/core": "^1.2.6",
+    "web-ext": "^5.5.0"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.27.0"
+  },
+  "engines": {
+    "node": ">=12"
   }
 }

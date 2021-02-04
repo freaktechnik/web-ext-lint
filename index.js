@@ -1,9 +1,7 @@
-'use strict';
-
-const core = require('@actions/core');
-const webExt = require('web-ext');
-const qs = require('querystring');
-const path = require('path');
+import core from '@actions/core';
+import webExt from 'web-ext';
+import qs from 'querystring';
+import path from 'path';
 
 function report(level, info, message) {
     const meta = qs.stringify(info, ',', '=', {
@@ -40,7 +38,8 @@ webExt.cmd.lint({
 {
     shouldExitProgram: false
 })
-    .then((lintResult) => {
+    .then((rawLintResult) => {
+        const lintResult = JSON.parse(rawLintResult);
         if(lintResult.errors.length > 0) {
             core.startGroup('Errors');
             for(const error of lintResult.errors) {
