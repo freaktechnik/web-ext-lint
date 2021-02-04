@@ -22,7 +22,7 @@ function formatLocation(report) {
 }
 
 function formatMessage(report) {
-    const verbose = /true/.test(core.getInput('verbose');
+    const verbose = /true/.test(core.getInput('verbose'));
     if(verbose) {
         return `${report.message} - ${report.description}`;
     }
@@ -47,8 +47,8 @@ webExt.cmd.lint({
                 if(error.file) {
                     report('error', {
                         file: path.join(source, error.file),
-                        line: error.line,
-                        col: error.column
+                        line: error.line || 1,
+                        col: error.column || 1
                     }, formatMessage(error));
                 }
                 else {
@@ -63,8 +63,8 @@ webExt.cmd.lint({
                 if(warning.file) {
                     report('warning', {
                         file: path.join(source, warning.file),
-                        line: warning.line,
-                        col: warning.column
+                        line: warning.line || 1,
+                        col: warning.column || 1
                     }, formatMessage(warning));
                 }
                 else {
