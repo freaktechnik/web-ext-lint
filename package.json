@@ -4,7 +4,8 @@
   "description": "Github action to lint WebExtensions",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "ncc build index.js --license licenses.txt"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,8 @@
   "homepage": "https://github.com/freaktechnik/web-ext-lint#readme",
   "dependencies": {
     "@actions/core": "^1.2.6"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.27.0"
   }
 }
