@@ -9,6 +9,10 @@ inputs:
     description: 'When enabled, the description of all linter messages are also printed'
     required: false
     default: false
+  self-hosted:
+    description: 'Enable to indicate the extension will be self hosted'
+    required: false
+    default: false
 runs:
   using: 'node12'
   main: 'index.js'

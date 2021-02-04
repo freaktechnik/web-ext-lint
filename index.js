@@ -3,7 +3,6 @@
 const core = require('@actions/core');
 const webExt = require('web-ext');
 const qs = require('querystring');
-const os = require('os');
 const path = require('path');
 
 function report(level, info, message) {
@@ -31,9 +30,12 @@ function formatMessage(report) {
 }
 
 const source = core.getInput('extension-root') || '.';
+const selfHosted = core.getInput('self-hosted') || false;
+//TODO support explicit config path?
 webExt.cmd.lint({
     sourceDir: source,
-    output: 'json'
+    output: 'json',
+    selfHosted
 },
 {
     shouldExitProgram: false

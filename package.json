@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/freaktechnik/web-ext-lint#readme",
   "dependencies": {
-    "@actions/core": "^1.2.6",
-    "web-ext": "^5.5.0"
+    "@actions/core": "^1.2.6"
   }
 }

@@ -12,6 +12,10 @@ Root directory of the extension to lint (the folder containing manifest.json). D
 
 If the output should include the long descriptions of the linting results, set this to `true`. Else only the short message is reported. Default: `false`
 
+### `self-hosted`
+
+Set to `true` to disable linting rules only relevant to listed extensions. Default: `false`
+
 ## Example usage
 
 ```yaml
