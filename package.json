@@ -1,0 +1,23 @@
+{
+  "name": "web-ext-lint",
+  "version": "1.0.0",
+  "description": "Github action to lint WebExtensions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freaktechnik/web-ext-lint.git"
+  },
+  "author": "Martin Giger (https://humanoids.be)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/freaktechnik/web-ext-lint/issues"
+  },
+  "homepage": "https://github.com/freaktechnik/web-ext-lint#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "web-ext": "^5.5.0"
+  }
+}

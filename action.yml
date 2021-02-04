@@ -1,0 +1,14 @@
+name: 'web-ext lint'
+description: 'Lint WebExtension with annotations'
+inputs:
+  extension-root:
+    description: 'Root folder of the extension that contains the manifest.json'
+    required: false
+    default: '.'
+  verbose:
+    description: 'When enabled, the description of all linter messages are also printed'
+    required: false
+    default: false
+runs:
+  using: 'node12'
+  main: 'index.js'
