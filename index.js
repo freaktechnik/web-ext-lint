@@ -22,7 +22,7 @@ function formatLocation(report) {
 }
 
 function formatMessage(report) {
-    const verbose = core.getInput('verbose') || false;
+    const verbose = /true/.test(core.getInput('verbose');
     if(verbose) {
         return `${report.message} - ${report.description}`;
     }
@@ -30,7 +30,7 @@ function formatMessage(report) {
 }
 
 const source = core.getInput('extension-root') || '.';
-const selfHosted = core.getInput('self-hosted') || false;
+const selfHosted = /true/.test(core.getInput('self-hosted'));
 //TODO support explicit config path?
 webExt.cmd.lint({
     sourceDir: source,
