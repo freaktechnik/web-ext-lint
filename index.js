@@ -35,7 +35,8 @@ const selfHosted = core.getInput('self-hosted') || false;
 webExt.cmd.lint({
     sourceDir: source,
     output: 'json',
-    selfHosted
+    selfHosted,
+    verbose: true
 },
 {
     shouldExitProgram: false

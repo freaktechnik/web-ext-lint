@@ -4,8 +4,7 @@
   "description": "Github action to lint WebExtensions",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "ncc build index.js --license licenses.txt"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -21,9 +20,7 @@
     "@actions/core": "^1.2.6",
     "web-ext": "^5.5.0"
   },
-  "devDependencies": {
-    "@vercel/ncc": "^0.27.0"
-  },
+  "devDependencies": {},
   "engines": {
     "node": ">=12"
   }
