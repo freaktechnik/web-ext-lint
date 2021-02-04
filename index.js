@@ -1,7 +1,9 @@
-import core from '@actions/core';
-import webExt from 'web-ext';
-import qs from 'querystring';
-import path from 'path';
+'use strict';
+
+const core = require('@actions/core');
+const webExt = require('web-ext');
+const qs = require('querystring');
+const path = require('path');
 
 function report(level, info, message) {
     const meta = qs.stringify(info, ',', '=', {
