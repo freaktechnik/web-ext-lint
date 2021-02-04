@@ -34,7 +34,7 @@ const selfHosted = core.getInput('self-hosted') || false;
 //TODO support explicit config path?
 webExt.cmd.lint({
     sourceDir: source,
-    output: 'json',
+    output: 'none',
     selfHosted
 },
 {
