@@ -35,14 +35,12 @@ const selfHosted = core.getInput('self-hosted') || false;
 webExt.cmd.lint({
     sourceDir: source,
     output: 'json',
-    selfHosted,
-    verbose: true
+    selfHosted
 },
 {
     shouldExitProgram: false
 })
-    .then((rawLintResult) => {
-        const lintResult = JSON.parse(rawLintResult);
+    .then((lintResult) => {
         if(lintResult.errors.length > 0) {
             core.startGroup('Errors');
             for(const error of lintResult.errors) {
