@@ -19,5 +19,5 @@ Set to `true` to disable linting rules only relevant to listed extensions. Defau
 ## Example usage
 
 ```yaml
-uses: frekatechnik/web-ext-lint@v1
+uses: freaktechnik/web-ext-lint@v1
 ```
