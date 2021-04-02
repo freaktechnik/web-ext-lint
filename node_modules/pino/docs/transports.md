@@ -1,6 +1,6 @@
 # Transports
 
-A "transport" for Pino is supplementary tool which consumes Pino logs.
+A "transport" for Pino is a supplementary tool which consumes Pino logs.
 
 Consider the following example:
 
@@ -42,7 +42,7 @@ external processes so that the threading capabilities of the OS can be
 used (or other CPUs).
 
 One consequence of this methodology is that "error" logs do not get written to
-`stderr`. However, since Pino logs are in a parseable format, it is possible to
+`stderr`. However, since Pino logs are in a parsable format, it is possible to
 use tools like [pino-tee][pino-tee] or [jq][jq] to work with the logs. For
 example, to view only logs marked as "error" logs:
 
@@ -74,7 +74,9 @@ PR's to this document are welcome for any new transports!
 + [pino-couch](#pino-couch)
 + [pino-datadog](#pino-datadog)
 + [pino-elasticsearch](#pino-elasticsearch)
++ [pino-gelf](#pino-gelf)
 + [pino-http-send](#pino-http-send)
++ [pino-kafka](#pino-kafka)
 + [pino-logflare](#pino-logflare)
 + [pino-mq](#pino-mq)
 + [pino-mysql](#pino-mysql)
@@ -186,6 +188,19 @@ Then [create an index pattern](https://www.elastic.co/guide/en/kibana/current/se
 [elasticsearch]: https://www.elastic.co/products/elasticsearch
 [kibana]: https://www.elastic.co/products/kibana
 
+<a id="pino-gelf"></a>
+### pino-gelf
+
+Pino GELF ([pino-gelf]) is a transport for the Pino logger. Pino GELF receives Pino logs from stdin and transforms them into [GELF format][gelf] before sending them to a remote [Graylog server][graylog] via UDP.
+
+```sh
+$ node your-app.js | pino-gelf log
+```
+
+[pino-gelf]: https://github.com/pinojs/pino-gelf
+[gelf]: https://docs.graylog.org/en/2.1/pages/gelf.html
+[graylog]: https://www.graylog.org/
+
 <a id="pino-http-send"></a>
 ### pino-http-send
 
@@ -194,6 +209,15 @@ transport that will batch logs and send to a specified URL.
 
 ```console
 $ node app.js | pino-http-send -u http://localhost:8080/logs
+```
+
+<a id="pino-kafka"></a>
+### pino-kafka
+
+[pino-kafka](https://github.com/ayZagen/pino-kafka) transport to send logs to [Apache Kafka](https://kafka.apache.org/).
+
+```sh
+$ node index.js | pino-kafka -b 10.10.10.5:9200 -d mytopic
 ```
 
 <a id="pino-logflare"></a>
