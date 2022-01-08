@@ -1,5 +1,8 @@
 name: 'web-ext lint'
 description: 'Lint WebExtension with annotations'
+branding:
+  icon: 'check'
+  color: 'green'
 inputs:
   extension-root:
     description: 'Root folder of the extension that contains the manifest.json'
