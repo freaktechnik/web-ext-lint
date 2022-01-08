@@ -1,11 +1,9 @@
-'use strict';
+import core from '@actions/core';
+import webExt from 'web-ext';
+import qs from 'node:querystring';
+import path from 'node:path';
 
-const core = require('@actions/core'),
-    webExt = require('web-ext'),
-    qs = require('querystring'),
-    path = require('path'),
-
-    NONE = 0,
+const NONE = 0,
     FIRST = 1,
     source = core.getInput('extension-root') || '.',
     selfHosted = /true/.test(core.getInput('self-hosted'));
