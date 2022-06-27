@@ -16,6 +16,10 @@ If the output should include the long descriptions of the linting results, set t
 
 Set to `true` to disable linting rules only relevant to listed extensions. Default: `false`
 
+### `privileged`
+
+Set to `true` to disable the error when using privileged manifest fields. Default: `false`
+
 ## Example usage
 
 ```yaml

@@ -16,6 +16,10 @@ inputs:
     description: 'Enable to indicate the extension will be self hosted'
     required: false
     default: false
+  privileged:
+    description: 'Enable to treat the extension as a privileged extension'
+    required: false
+    default: false
 runs:
   using: 'node16'
   main: 'index.js'

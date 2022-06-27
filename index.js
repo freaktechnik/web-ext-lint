@@ -6,6 +6,7 @@ import path from 'node:path';
 const NONE = 0,
     FIRST = 1,
     source = core.getInput('extension-root') || '.',
+    privileged = core.getInput('privileged') || false,
     selfHosted = /true/.test(core.getInput('self-hosted'));
 //TODO support explicit config path?
 
@@ -36,6 +37,7 @@ function formatMessage(lintReport) {
 webExt.cmd.lint({
     sourceDir: source,
     output: 'none',
+    privileged: privileged,
     selfHosted
 },
 {
