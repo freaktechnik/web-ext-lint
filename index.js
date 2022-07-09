@@ -37,7 +37,7 @@ function formatMessage(lintReport) {
 webExt.cmd.lint({
     sourceDir: source,
     output: 'none',
-    privileged: privileged,
+    privileged,
     selfHosted
 },
 {
