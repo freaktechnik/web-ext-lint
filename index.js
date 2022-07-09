@@ -10,6 +10,8 @@ const NONE = 0,
     selfHosted = core.getBooleanInput('self-hosted') || false;
 //TODO support explicit config path?
 
+console.log(source, privileged, selfHosted);
+
 function report(level, info, message) {
     const meta = qs.stringify(info, ',', '=', {
         encodeURIComponent: (string) => string
