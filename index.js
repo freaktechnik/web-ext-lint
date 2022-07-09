@@ -6,8 +6,8 @@ import path from 'node:path';
 const NONE = 0,
     FIRST = 1,
     source = core.getInput('extension-root') || '.',
-    privileged = core.getInput('privileged') || false,
-    selfHosted = /true/.test(core.getInput('self-hosted'));
+    privileged = core.getBooleanInput('privileged') || false,
+    selfHosted = core.getBooleanInput('self-hosted') || false;
 //TODO support explicit config path?
 
 function report(level, info, message) {
