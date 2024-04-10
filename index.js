@@ -12,7 +12,7 @@ const NONE = 0,
 
 function report(level, info, message) {
     const meta = qs.stringify(info, ',', '=', {
-        encodeURIComponent: (string) => string
+        encodeURIComponent: (string) => string,
     });
     core.info(`::${level} ${meta}::${message}`);
 }
@@ -21,7 +21,7 @@ function formatLocation(lintReport) {
     return [
         lintReport.file,
         lintReport.line,
-        lintReport.column
+        lintReport.column,
     ].filter((exists) => !!exists)
         .join(':');
 }
@@ -38,10 +38,10 @@ webExt.cmd.lint({
     sourceDir: source,
     output: 'none',
     privileged,
-    selfHosted
+    selfHosted,
 },
 {
-    shouldExitProgram: false
+    shouldExitProgram: false,
 })
     .then((lintResult) => {
         if(lintResult.errors.length > NONE) {
@@ -51,7 +51,7 @@ webExt.cmd.lint({
                     report('error', {
                         file: path.join(source, error.file),
                         line: error.line || FIRST,
-                        col: error.column || FIRST
+                        col: error.column || FIRST,
                     }, formatMessage(error));
                 }
                 else {
@@ -67,7 +67,7 @@ webExt.cmd.lint({
                     report('warning', {
                         file: path.join(source, warning.file),
                         line: warning.line || FIRST,
-                        col: warning.column || FIRST
+                        col: warning.column || FIRST,
                     }, formatMessage(warning));
                 }
                 else {
