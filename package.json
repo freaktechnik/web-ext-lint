@@ -21,7 +21,7 @@
     "web-ext": "^7.11.0"
   },
   "devDependencies": {
-    "@freaktechnik/eslint-config-node": "^9.2.1",
+    "@freaktechnik/eslint-config-node": "^10.0.3",
     "eslint": "^8.57.0"
   },
   "engines": {
