@@ -1,7 +1,7 @@
-import P, { pino } from "../../";
 import { IncomingMessage, ServerResponse } from "http";
 import { Socket } from "net";
-import { expectError, expectType } from 'tsd'
+import { expectError, expectType } from 'tsd';
+import P, { pino } from "../../";
 import Logger = P.Logger;
 
 const log = pino();
@@ -106,6 +106,8 @@ pino({
         disabled: false
     },
 });
+
+pino({}, undefined);
 
 pino({ base: null });
 if ("pino" in log) console.log(`pino version: ${log.pino}`);
@@ -309,14 +311,14 @@ log3.on('level-change', (lvl, val, prevLvl, prevVal, instance) => {
 });
 
 const clog3 = log3.child({}, { customLevels: { childLevel: 120 } })
-// child inherit parant
+// child inherit parent
 clog3.myLevel('')
 // child itself
 clog3.childLevel('')
 const cclog3 = clog3.child({}, { customLevels: { childLevel2: 130 } })
 // child inherit root
 cclog3.myLevel('')
-// child inherit parant
+// child inherit parent
 cclog3.childLevel('')
 // child itself
 cclog3.childLevel2('')
@@ -424,3 +426,16 @@ expectError(childLogger2.doesntExist);
 expectError(pino({
   onChild: (child) => { const a = child.doesntExist; }
 }, process.stdout));
+
+const pinoWithoutLevelsSorting = pino({});
+const pinoWithDescSortingLevels = pino({ levelComparison: 'DESC' });
+const pinoWithAscSortingLevels = pino({ levelComparison: 'ASC' });
+const pinoWithCustomSortingLevels = pino({ levelComparison: () => false });
+// with wrong level comparison direction
+expectError(pino({ levelComparison: 'SOME'}), process.stdout);
+// with wrong level comparison type
+expectError(pino({ levelComparison: 123}), process.stdout);
+// with wrong custom level comparison return type
+expectError(pino({ levelComparison: () => null }), process.stdout);
+expectError(pino({ levelComparison: () => 1 }), process.stdout);
+expectError(pino({ levelComparison: () => 'string' }), process.stdout);
