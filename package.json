@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@freaktechnik/eslint-config-node": "^10.1.7",
-    "eslint": "^9.17.0"
+    "eslint": "^9.18.0"
   },
   "engines": {
     "node": ">=16.0.0"
