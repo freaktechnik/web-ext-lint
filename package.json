@@ -18,7 +18,7 @@
   "homepage": "https://github.com/freaktechnik/web-ext-lint#readme",
   "dependencies": {
     "@actions/core": "^1.11.1",
-    "web-ext": "^8.4.0"
+    "web-ext": "^8.5.0"
   },
   "devDependencies": {
     "@freaktechnik/eslint-config-node": "^10.1.7",
