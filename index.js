@@ -1,4 +1,4 @@
-import core from '@actions/core';
+import * as core from '@actions/core';
 import webExt from 'web-ext';
 import qs from 'node:querystring';
 import path from 'node:path';
