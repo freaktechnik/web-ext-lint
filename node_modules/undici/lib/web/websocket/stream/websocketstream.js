@@ -284,12 +284,6 @@ class WebSocketStream {
       start: (controller) => {
         this.#readableStreamController = controller
       },
-      pull (controller) {
-        let chunk
-        while (controller.desiredSize > 0 && (chunk = response.socket.read()) !== null) {
-          controller.enqueue(chunk)
-        }
-      },
       cancel: (reason) => this.#cancel(reason)
     })
 
@@ -338,7 +332,7 @@ class WebSocketStream {
       try {
         chunk = utf8Decode(data)
       } catch {
-        failWebsocketConnection(this.#handler, 'Received invalid UTF-8 in text frame.')
+        failWebsocketConnection(this.#handler, 1007, 'Received invalid UTF-8 in text frame.')
         return
       }
     } else if (type === opcodes.BINARY) {
